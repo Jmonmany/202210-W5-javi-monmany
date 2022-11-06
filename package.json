@@ -5,7 +5,7 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "test": "jest --watchAll --coverage",
+        "test": "jest --watch",
         "test:prod": "jest --watchAll --coverage --watchAll=false",
         "lint": "eslint ."
     },
