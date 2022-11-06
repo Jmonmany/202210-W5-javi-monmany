@@ -8,10 +8,10 @@
 // %# - Index of the test case.
 // %% - single percent sign ('%'). This does not consume an argument
 
-import {arrayLength} from './arrayFunctions';
+import { arrayLength } from './arrayFunctions';
 
 const cases = [5, 'Hello', false, NaN, null, 38, true];
-const extraCase = 50
+const extraCase = 50;
 
 describe('Given arrayLength function', () => {
     test('The length of the given array should be 7', () => {
@@ -35,4 +35,3 @@ describe('Given arrayPop function', () => {
         expect(result).toBe(expected);
     });
 });
-
