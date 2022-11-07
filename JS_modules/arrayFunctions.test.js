@@ -1,37 +1,44 @@
-import { arrayLength } from './arrayFunctions';
+import { arrayLength, arrayPush } from './arrayFunctions';
 
-const cases = [
-    6,
-    'Hello',
-    false,
-    'Present',
-    NaN,
-    17,
-    undefined,
-    null,
-    38,
-    true,
-];
+const cases = [6, 'Hello', false, 'Present', NaN, 17, undefined, null, 38];
 // const joinCases = ['','-',', ']
-// const extraElement = 50;
+const extraElement = 50;
 // const includedElement = 'Present';
 // const even = (element) => element % 2 === 0;
 
 describe('Given arrayLength function', () => {
-    test('The length of the given array should be 7', () => {
+    test(`The length of the given array should be ${cases.length}`, () => {
         const expected = cases.length;
         const result = arrayLength(cases);
         expect(result).toBe(expected);
     });
 });
 
-// describe('Given arrayPush function', () => {
-//     test(`The following array should be ${cases.push(extraElement)}`, () => {
-//         const expected = cases.push(extraElement);
-//         const result = arrayPush(cases, extraElement);
-//         expect(result).toBe(expected);
-//     });
-// });
+describe('Given arrayPush function', () => {
+    const localArray = cases;
+    test(`Should return 10`, () => {
+        const expected = 10;
+        const result = arrayPush(localArray, extraElement);
+        expect(result).toBe(expected);
+    });
+    test(`The following array should be [6, "Hello", false, "Present", NaN, 17, undefined, null, 38, 50]`, () => {
+        const expected = [
+            6,
+            'Hello',
+            false,
+            'Present',
+            NaN,
+            17,
+            undefined,
+            null,
+            38,
+            50,
+        ];
+        const result = localArray;
+        expect(result).toEqual(expected);
+    });
+});
+
 // describe('Given arrayPop function', () => {
 //     test(`The following array should be ${cases.pop()}`, () => {
 //         const expected = cases.pop();
