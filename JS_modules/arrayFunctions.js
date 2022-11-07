@@ -26,9 +26,13 @@ export function arrayPop(nativeArray) {
             delete nativeArray[i];
         }
     }
-    console.log(nativeArray);
     return lastElement;
 }
-console.log(
-    arrayPop([6, 'Hello', false, 'Present', NaN, 17, undefined, null, 38])
-);
+export function arraySome(array, callback) {
+    array.forEach(element => {
+        if(!callback(element)){
+            return true
+        }
+    });
+}
+

@@ -1,10 +1,10 @@
-import { arrayLength, arrayPush, arrayPop } from './arrayFunctions';
+import { arrayLength, arrayPush, arrayPop, arraySome } from './arrayFunctions';
 
 const cases = [6, 'Hello', false, 'Present', NaN, 17, undefined, null, 38];
 // const joinCases = ['','-',', ']
 const extraElement = 50;
 // const includedElement = 'Present';
-// const even = (element) => element % 2 === 0;
+const even = (element) => element % 2 === 0;
 
 describe('Given arrayLength function', () => {
     test(`The length of the given array should be ${cases.length}`, () => {
@@ -79,13 +79,15 @@ describe('Given arrayPop function', () => {
 //         expect(result).toBe(expected);
 //     });
 // });
-// describe('Given arraySome function', () => {
-//     test(`The result should be ${cases.some(even)}`, () => {
-//         const expected = cases.some(even);
-//         const result = arraySome(cases, even);
-//         expect(result).toBe(expected);
-//     });
-// });
+
+describe('Given arraySome function', () => {
+    test(`The result should be ${cases.some(even)}`, () => {
+        const expected = cases.some(even);
+        const result = arraySome(cases, even);
+        expect(result).toBe(expected);
+    });
+});
+
 // describe('Given arrayEvery function', () => {
 //     test(`The result should be ${cases.every(even)}`, () => {
 //         const expected = cases.every(even);
