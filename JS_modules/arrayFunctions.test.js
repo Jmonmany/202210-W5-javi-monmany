@@ -1,4 +1,4 @@
-import { arrayLength, arrayPush } from './arrayFunctions';
+import { arrayLength, arrayPush, arrayPop } from './arrayFunctions';
 
 const cases = [6, 'Hello', false, 'Present', NaN, 17, undefined, null, 38];
 // const joinCases = ['','-',', ']
@@ -16,12 +16,12 @@ describe('Given arrayLength function', () => {
 
 describe('Given arrayPush function', () => {
     const localArray = cases;
-    test(`Should return 10`, () => {
-        const expected = 10;
+    test(`Should return ${arrayLength(localArray) + 1}`, () => {
+        const expected = arrayLength(localArray) + 1;
         const result = arrayPush(localArray, extraElement);
         expect(result).toBe(expected);
     });
-    test(`The following array should be [6, "Hello", false, "Present", NaN, 17, undefined, null, 38, 50]`, () => {
+    test(`The following array should be ${localArray}`, () => {
         const expected = [
             6,
             'Hello',
@@ -39,13 +39,32 @@ describe('Given arrayPush function', () => {
     });
 });
 
-// describe('Given arrayPop function', () => {
-//     test(`The following array should be ${cases.pop()}`, () => {
-//         const expected = cases.pop();
-//         const result = arrayPop(cases);
-//         expect(result).toBe(expected);
-//     });
-// });
+describe('Given arrayPop function', () => {
+    const localArray = cases;
+
+    test(`Should return 50`, () => {
+        const expected = 50;
+        const result = arrayPop(localArray);
+        expect(result).toBe(expected);
+    });
+    test(`The following array should be ${localArray}`, () => {
+        const expected = [
+            6,
+            'Hello',
+            false,
+            'Present',
+            NaN,
+            17,
+            undefined,
+            null,
+            38,
+        ];
+        const result = localArray;
+        expect(result).toEqual(expected);
+        expect();
+    });
+});
+
 // describe('Given arrayShift function', () => {
 //     test(`The following array should be ${cases.shift()}`, () => {
 //         const expected = cases.shift();
