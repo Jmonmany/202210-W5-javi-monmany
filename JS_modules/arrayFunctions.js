@@ -9,3 +9,8 @@ export function arrayLength(arr) {
     }
     return i;
 }
+
+export function arrayPush(nativeArray, extraElement) {
+    nativeArray[arrayLength(nativeArray)] = extraElement;
+    return arrayLength(nativeArray);
+}
