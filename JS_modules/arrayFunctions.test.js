@@ -9,6 +9,7 @@ import {
     arrayFind,
     arrayFilter,
     arrayMap,
+    arrayFindIndex,
 } from './arrayFunctions';
 
 // const joinCases = ['','-',', ']
@@ -180,15 +181,17 @@ describe('Given arrayMap function', () => {
     });
 });
 
-// describe('Given arrayFindIndex function', () => {
-//     test(`The Position of the following value on the given array should be ${cases.findIndex(
-//         even
-//     )}`, () => {
-//         const expected = cases.findIndex(even);
-//         const result = arrayFindIndex(cases, even);
-//         expect(result).toBe(expected);
-//     });
-// });
+describe('Given arrayFindIndex function', () => {
+    const cases = [6, 'Hello', false, 'Present', NaN, 17, undefined, null, 38];
+    test(`The position of the following value on the given array should be ${cases.findIndex(
+        even
+    )}`, () => {
+        const expected = cases.findIndex(even);
+        const result = arrayFindIndex(cases, even);
+        expect(result).toBe(expected);
+    });
+});
+
 // describe('Given arrayIncludes function', () => {
 //     test(`The result should be ${cases.includes(extraElement)}`, () => {
 //         const expected = cases.includes(extraElement);
