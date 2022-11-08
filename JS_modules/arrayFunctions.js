@@ -63,6 +63,7 @@ export function arrayFind(nativeArray, callback) {
         if (callback(element)) elementfound = element;
         return elementfound;
     }
+    return undefined;
 }
 export function arrayFilter(nativeArray, callback) {
     let filteredArray = [];
@@ -78,8 +79,16 @@ export function arrayFilter(nativeArray, callback) {
 export function arrayMap(nativeArray, callback) {
     let filteredArray = [];
     for (const element of nativeArray) {
-        let elementDoubled = callback(element)
-        arrayPush(filteredArray, elementDoubled)
+        let elementDoubled = callback(element);
+        arrayPush(filteredArray, elementDoubled);
     }
     return filteredArray;
+}
+
+export function arrayFindIndex(nativeArray, callback) {
+    let elementfound = arrayFind(nativeArray, callback);
+    for (let i = 0; i < arrayLength(nativeArray); i++) {
+        if (nativeArray[i] === elementfound) return i;
+    }
+    return -1;
 }
