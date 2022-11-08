@@ -10,11 +10,12 @@ import {
     arrayFilter,
     arrayMap,
     arrayFindIndex,
+    arrayIncludes,
 } from './arrayFunctions';
 
 // const joinCases = ['','-',', ']
 const extraElement = 50;
-// const includedElement = 'Present';
+const includedElement = 'Present';
 const even = (element) => element % 2 === 0;
 const double = (element) => element * 2;
 
@@ -132,9 +133,15 @@ describe('Given arrayShift function', () => {
 
 describe('Given arraySome function', () => {
     const cases = [6, 'Hello', false, 'Present', NaN, 17, undefined, null, 38];
+    const toFail = (element) => element === 'Fail';
     test(`The result should be ${cases.some(even)}`, () => {
         const expected = cases.some(even);
         const result = arraySome(cases, even);
+        expect(result).toBe(expected);
+    });
+    test(`The result should be ${cases.some(toFail)}`, () => {
+        const expected = cases.some(toFail);
+        const result = arraySome(cases, toFail);
         expect(result).toBe(expected);
     });
 });
@@ -183,6 +190,7 @@ describe('Given arrayMap function', () => {
 
 describe('Given arrayFindIndex function', () => {
     const cases = [6, 'Hello', false, 'Present', NaN, 17, undefined, null, 38];
+    const toFail = (element) => element === 'Fail'
     test(`The position of the following value on the given array should be ${cases.findIndex(
         even
     )}`, () => {
@@ -190,15 +198,29 @@ describe('Given arrayFindIndex function', () => {
         const result = arrayFindIndex(cases, even);
         expect(result).toBe(expected);
     });
+    test(`The position of the following value on the given array should be ${cases.findIndex(
+        toFail
+    )}`, () => {
+        const expected = cases.findIndex(toFail);
+        const result = arrayFindIndex(cases, toFail);
+        expect(result).toBe(expected);
+    });
 });
 
-// describe('Given arrayIncludes function', () => {
-//     test(`The result should be ${cases.includes(extraElement)}`, () => {
-//         const expected = cases.includes(extraElement);
-//         const result = arrayIncludes(cases, extraElement);
-//         expect(result).toBe(expected);
-//     });
-// });
+describe('Given arrayIncludes function', () => {
+    const cases = [6, 'Hello', false, 'Present', NaN, 17, undefined, null, 38];
+    test(`The result should be ${cases.includes(extraElement)}`, () => {
+        const expected = cases.includes(extraElement);
+        const result = arrayIncludes(cases, extraElement);
+        expect(result).toBe(expected);
+    });
+    test(`The result should be ${cases.includes(includedElement)}`, () => {
+        const expected = cases.includes(includedElement);
+        const result = arrayIncludes(cases, includedElement);
+        expect(result).toBe(expected);
+    });
+});
+
 // describe('Given arrayIndexOf function', () => {
 //     test(`The result should be ${cases.indexOf(includedElement)}`, () => {
 //         const expected = cases.indexOf(includedElement);
