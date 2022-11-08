@@ -14,8 +14,6 @@ export function arrayPush(nativeArray, extraElement) {
 }
 
 export function arrayPop(nativeArray) {
-    if (arrayLength(nativeArray) === 0) return undefined;
-
     const lastElement = nativeArray[arrayLength(nativeArray) - 1];
 
     for (let i = 0; i <= arrayLength(nativeArray) - 1; i++) {
@@ -34,8 +32,6 @@ export function arrayUnshift(nativeArray, newElement) {
 }
 export function arrayShift(nativeArray) {
     const firstElement = nativeArray[0];
-    if (arrayLength(nativeArray) === 0) return undefined;
-
     for (let i = 0; i < arrayLength(nativeArray); i++) {
         nativeArray[i] = nativeArray[i + 1];
     }
@@ -63,7 +59,6 @@ export function arrayFind(nativeArray, callback) {
         if (callback(element)) elementfound = element;
         return elementfound;
     }
-    return undefined;
 }
 export function arrayFilter(nativeArray, callback) {
     let filteredArray = [];
@@ -84,11 +79,17 @@ export function arrayMap(nativeArray, callback) {
     }
     return filteredArray;
 }
-
 export function arrayFindIndex(nativeArray, callback) {
     let elementfound = arrayFind(nativeArray, callback);
     for (let i = 0; i < arrayLength(nativeArray); i++) {
         if (nativeArray[i] === elementfound) return i;
+        return -1;
     }
-    return -1;
+}
+
+export function arrayIncludes(nativeArray, newElement) {
+    for (const element of nativeArray) {
+        if (element === newElement) return true;
+    }
+    return false;
 }
