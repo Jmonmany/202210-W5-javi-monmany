@@ -50,11 +50,17 @@ export function arraySome(nativeArray, callback) {
 }
 
 export function arrayEvery(nativeArray, callback) {
-    let counter = 0
+    let counter = 0;
     for (const element of nativeArray) {
-        if (callback(element)) counter ++;
-        if (arrayLength(nativeArray) === counter) return true
+        if (callback(element)) counter++;
+        if (arrayLength(nativeArray) === counter) return true;
     }
     return false;
 }
-
+export function arrayFind(nativeArray, callback) {
+    let elementfound;
+    for (const element of nativeArray) {
+        if (callback(element)) elementfound = element;
+        return elementfound;
+    }
+}
