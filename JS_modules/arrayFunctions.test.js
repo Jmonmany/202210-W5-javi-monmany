@@ -6,6 +6,7 @@ import {
     arrayShift,
     arraySome,
     arrayEvery,
+    arrayFind,
 } from './arrayFunctions';
 
 // const joinCases = ['','-',', ']
@@ -149,13 +150,15 @@ describe('Given arrayEvery function', () => {
     });
 });
 
-// describe('Given arrayFind function', () => {
-//     test(`The result should be ${cases.find(even)}`, () => {
-//         const expected = cases.find(even);
-//         const result = arrayFind(cases, even);
-//         expect(result).toBe(expected);
-//     });
-// });
+describe('Given arrayFind function', () => {
+    const cases = [6, 'Hello', 'Present', NaN, 17, undefined, null,37];
+    test(`The result should be ${cases.find(even)}`, () => {
+        const expected = cases.find(even);
+        const result = arrayFind(cases, even);
+        expect(result).toBe(expected);
+    });
+});
+
 // describe('Given arrayFilter function', () => {
 //     test(`The following array should be ${cases.filter(even)}`, () => {
 //         const expected = cases.filter(even);
