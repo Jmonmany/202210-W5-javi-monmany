@@ -5,6 +5,7 @@ import {
     arrayUnshift,
     arrayShift,
     arraySome,
+    arrayEvery,
 } from './arrayFunctions';
 
 // const joinCases = ['','-',', ']
@@ -133,13 +134,21 @@ describe('Given arraySome function', () => {
     });
 });
 
-// describe('Given arrayEvery function', () => {
-//     test(`The result should be ${cases.every(even)}`, () => {
-//         const expected = cases.every(even);
-//         const result = arrayEvery(cases, even);
-//         expect(result).toBe(expected);
-//     });
-// });
+describe('Given arrayEvery function', () => {
+    const cases = [6, 'Hello', false, 'Present', NaN, 17, undefined, null, 37];
+    const cases2 = [6, 6, 6, 6, 6, 6, 6];
+    test(`The result should be ${cases.every(even)}`, () => {
+        const expected = cases.every(even);
+        const result = arrayEvery(cases, even);
+        expect(result).toBe(expected);
+    });
+    test(`The result should be ${cases2.every(even)}`, () => {
+        const expected2 = cases2.every(even);
+        const result2 = arrayEvery(cases2, even);
+        expect(result2).toBe(expected2);
+    });
+});
+
 // describe('Given arrayFind function', () => {
 //     test(`The result should be ${cases.find(even)}`, () => {
 //         const expected = cases.find(even);
