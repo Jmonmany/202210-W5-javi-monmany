@@ -64,3 +64,14 @@ export function arrayFind(nativeArray, callback) {
         return elementfound;
     }
 }
+export function arrayFilter(nativeArray, callback) {
+    let filteredArray = [];
+    for (const element of nativeArray) {
+        let elementfound;
+        if (callback(element)) {
+            elementfound = element;
+            arrayPush(filteredArray, elementfound);
+        }
+    }
+    return filteredArray;
+}
