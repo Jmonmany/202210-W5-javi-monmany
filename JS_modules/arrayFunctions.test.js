@@ -7,6 +7,7 @@ import {
     arraySome,
     arrayEvery,
     arrayFind,
+    arrayFilter,
 } from './arrayFunctions';
 
 // const joinCases = ['','-',', ']
@@ -127,7 +128,7 @@ describe('Given arrayShift function', () => {
 });
 
 describe('Given arraySome function', () => {
-    const cases = [6, 'Hello', false, 'Present', NaN, 17, undefined, null, 37];
+    const cases = [6, 'Hello', false, 'Present', NaN, 17, undefined, null, 38];
     test(`The result should be ${cases.some(even)}`, () => {
         const expected = cases.some(even);
         const result = arraySome(cases, even);
@@ -136,7 +137,7 @@ describe('Given arraySome function', () => {
 });
 
 describe('Given arrayEvery function', () => {
-    const cases = [6, 'Hello', false, 'Present', NaN, 17, undefined, null, 37];
+    const cases = [6, 'Hello', false, 'Present', NaN, 17, undefined, null, 38];
     const cases2 = [6, 6, 6, 6, 6, 6, 6];
     test(`The result should be ${cases.every(even)}`, () => {
         const expected = cases.every(even);
@@ -151,7 +152,7 @@ describe('Given arrayEvery function', () => {
 });
 
 describe('Given arrayFind function', () => {
-    const cases = [6, 'Hello', 'Present', NaN, 17, undefined, null,37];
+    const cases = [6, 'Hello', 'Present', NaN, 17, undefined, null, 38];
     test(`The result should be ${cases.find(even)}`, () => {
         const expected = cases.find(even);
         const result = arrayFind(cases, even);
@@ -159,13 +160,15 @@ describe('Given arrayFind function', () => {
     });
 });
 
-// describe('Given arrayFilter function', () => {
-//     test(`The following array should be ${cases.filter(even)}`, () => {
-//         const expected = cases.filter(even);
-//         const result = arrayFilter(cases, even);
-//         expect(result).toBe(expected);
-//     });
-// });
+describe('Given arrayFilter function', () => {
+    const cases = [6, 'Hello', 'Present', NaN, 17, undefined, null, 38];
+    test(`The following array should be ${cases.filter(even)}`, () => {
+        const expected = cases.filter(even);
+        const result = arrayFilter(cases, even);
+        expect(result).toEqual(expected);
+    });
+});
+
 // describe('Given arrayMap function', () => {
 //     test(`The following array should be ${cases.map(even)}`, () => {
 //         const expected = cases.map(even);
