@@ -42,3 +42,9 @@ export function arrayShift(nativeArray) {
     arrayPop(nativeArray);
     return firstElement;
 }
+export function arraySome(nativeArray, callback) {
+    for (const element of nativeArray) {
+        if (callback(element)) return true;
+    }
+    return false;
+}
