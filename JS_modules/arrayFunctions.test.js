@@ -8,12 +8,14 @@ import {
     arrayEvery,
     arrayFind,
     arrayFilter,
+    arrayMap,
 } from './arrayFunctions';
 
 // const joinCases = ['','-',', ']
 const extraElement = 50;
 // const includedElement = 'Present';
 const even = (element) => element % 2 === 0;
+const double = (element) => element * 2;
 
 describe('Given arrayLength function', () => {
     const cases = [6, 'Hello', false, 'Present', NaN, 17, undefined, null, 38];
@@ -169,13 +171,15 @@ describe('Given arrayFilter function', () => {
     });
 });
 
-// describe('Given arrayMap function', () => {
-//     test(`The following array should be ${cases.map(even)}`, () => {
-//         const expected = cases.map(even);
-//         const result = arrayMap(cases, even);
-//         expect(result).toBe(expected);
-//     });
-// });
+describe('Given arrayMap function', () => {
+    const cases = [6, 'Hello', false, 'Present', NaN, 17, undefined, null, 38];
+    test(`The following array should be ${cases.map(double)}`, () => {
+        const expected = cases.map(double);
+        const result = arrayMap(cases, double);
+        expect(result).toEqual(expected);
+    });
+});
+
 // describe('Given arrayFindIndex function', () => {
 //     test(`The Position of the following value on the given array should be ${cases.findIndex(
 //         even
