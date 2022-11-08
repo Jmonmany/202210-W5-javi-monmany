@@ -75,3 +75,11 @@ export function arrayFilter(nativeArray, callback) {
     }
     return filteredArray;
 }
+export function arrayMap(nativeArray, callback) {
+    let filteredArray = [];
+    for (const element of nativeArray) {
+        let elementDoubled = callback(element)
+        arrayPush(filteredArray, elementDoubled)
+    }
+    return filteredArray;
+}
