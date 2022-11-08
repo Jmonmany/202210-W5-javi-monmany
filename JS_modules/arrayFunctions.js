@@ -1,13 +1,11 @@
-export function arrayLength(arr) {
-    let i = 0;
+export function arrayLength(nativeArray) {
+    let length = 0;
 
-    while (
-        arr[i] !== undefined ||
-        (arr[i] === undefined && arr[i + 1] !== undefined)
-    ) {
-        i++;
+    for (const element of nativeArray) {
+        nativeArray[length] = element;
+        length++;
     }
-    return i;
+    return length;
 }
 
 export function arrayPush(nativeArray, extraElement) {
@@ -16,9 +14,8 @@ export function arrayPush(nativeArray, extraElement) {
 }
 
 export function arrayPop(nativeArray) {
-    if (arrayLength(nativeArray) === 0) {
-        return undefined;
-    }
+    if (arrayLength(nativeArray) === 0) return undefined;
+
     const lastElement = nativeArray[arrayLength(nativeArray) - 1];
 
     for (let i = 0; i <= arrayLength(nativeArray) - 1; i++) {
@@ -26,9 +23,22 @@ export function arrayPop(nativeArray) {
             delete nativeArray[i];
         }
     }
-    console.log(nativeArray);
     return lastElement;
 }
-console.log(
-    arrayPop([6, 'Hello', false, 'Present', NaN, 17, undefined, null, 38])
-);
+export function arrayUnshift(nativeArray, newElement) {
+    for (let i = arrayLength(nativeArray) - 1; i >= 0; i--) {
+        nativeArray[i + 1] = nativeArray[i];
+    }
+    nativeArray[0] = newElement;
+    return arrayLength(nativeArray);
+}
+export function arrayShift(nativeArray) {
+    const firstElement = nativeArray[0];
+    if (arrayLength(nativeArray) === 0) return undefined;
+
+    for (let i = 0; i < arrayLength(nativeArray); i++) {
+        nativeArray[i] = nativeArray[i + 1];
+    }
+    arrayPop(nativeArray);
+    return firstElement;
+}
