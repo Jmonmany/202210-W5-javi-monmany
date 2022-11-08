@@ -48,3 +48,13 @@ export function arraySome(nativeArray, callback) {
     }
     return false;
 }
+
+export function arrayEvery(nativeArray, callback) {
+    let counter = 0
+    for (const element of nativeArray) {
+        if (callback(element)) counter ++;
+        if (arrayLength(nativeArray) === counter) return true
+    }
+    return false;
+}
+
