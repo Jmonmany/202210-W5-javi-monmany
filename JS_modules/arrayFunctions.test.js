@@ -11,6 +11,7 @@ import {
     arrayMap,
     arrayFindIndex,
     arrayIncludes,
+    arrayIndexOf,
 } from './arrayFunctions';
 
 // const joinCases = ['','-',', ']
@@ -190,7 +191,7 @@ describe('Given arrayMap function', () => {
 
 describe('Given arrayFindIndex function', () => {
     const cases = [6, 'Hello', false, 'Present', NaN, 17, undefined, null, 38];
-    const toFail = (element) => element === 'Fail'
+    const toFail = (element) => element === 'Fail';
     test(`The position of the following value on the given array should be ${cases.findIndex(
         even
     )}`, () => {
@@ -221,13 +222,26 @@ describe('Given arrayIncludes function', () => {
     });
 });
 
-// describe('Given arrayIndexOf function', () => {
-//     test(`The result should be ${cases.indexOf(includedElement)}`, () => {
-//         const expected = cases.indexOf(includedElement);
-//         const result = arrayIndexOf(cases, includedElement);
-//         expect(result).toBe(expected);
-//     });
-// });
+describe('Given arrayIndexOf function', () => {
+    const cases = [6, 'Hello', false, 'Present', NaN, 17, undefined, null, 38];
+    const toFail = 'Fail';
+    const index = 0;
+    test(`The position of the following value on the given array should be ${cases.indexOf(
+        includedElement
+    )}`, () => {
+        const expected = cases.indexOf(includedElement);
+        const result = arrayIndexOf(cases, includedElement, index);
+        expect(result).toBe(expected);
+    });
+    test(`The position of the following value on the given array should be ${cases.indexOf(
+        toFail
+    )}`, () => {
+        const expected = cases.indexOf(toFail);
+        const result = arrayIndexOf(cases, toFail);
+        expect(result).toBe(expected);
+    });
+});
+
 // describe('Given arrayReduce function', () => {
 //     test(`The result should be ${cases.reduce(
 //         (previousValue, currentValue) => previousValue + currentValue,
