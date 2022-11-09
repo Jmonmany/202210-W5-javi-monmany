@@ -54,23 +54,18 @@ export function arrayEvery(nativeArray, callback) {
     return false;
 }
 export function arrayFind(nativeArray, callback) {
-    let elementfound;
     for (const element of nativeArray) {
-        if (callback(element)) elementfound = element;
-        return elementfound;
+        if (callback(element)) return element;
     }
 }
 export function arrayFilter(nativeArray, callback) {
     let filteredArray = [];
     for (const element of nativeArray) {
-        let elementfound;
-        if (callback(element)) {
-            elementfound = element;
-            arrayPush(filteredArray, elementfound);
-        }
+        if (callback(element)) arrayPush(filteredArray, element);
     }
     return filteredArray;
 }
+
 export function arrayMap(nativeArray, callback) {
     let filteredArray = [];
     for (const element of nativeArray) {
@@ -81,15 +76,20 @@ export function arrayMap(nativeArray, callback) {
 }
 export function arrayFindIndex(nativeArray, callback) {
     let elementfound = arrayFind(nativeArray, callback);
+    if (elementfound === undefined) return -1;
     for (let i = 0; i < arrayLength(nativeArray); i++) {
         if (nativeArray[i] === elementfound) return i;
-        return -1;
     }
 }
-
 export function arrayIncludes(nativeArray, newElement) {
     for (const element of nativeArray) {
         if (element === newElement) return true;
     }
     return false;
+}
+export function arrayIndexOf(nativeArray, element, initialIndex) {
+    for (let i = initialIndex; i < arrayLength(nativeArray); i++) {
+        if (nativeArray[i] === element) return i;
+    }
+    return -1;
 }
