@@ -12,9 +12,11 @@ import {
     arrayFindIndex,
     arrayIncludes,
     arrayIndexOf,
+    arrayReduce,
+    arrayJoin,
 } from './arrayFunctions';
 
-// const joinCases = ['','-',', ']
+const joinCases = ['-', ', '];
 const extraElement = 50;
 const includedElement = 'Present';
 const even = (element) => element % 2 === 0;
@@ -76,7 +78,11 @@ describe('Given arrayPop function', () => {
         const expected = modifiedArray;
         const result = cases;
         expect(result).toEqual(expected);
-        expect();
+    });
+    test(`The result should be 0`, () => {
+        const expected = 0;
+        const result = 0;
+        expect(result).toEqual(expected);
     });
 });
 
@@ -242,23 +248,29 @@ describe('Given arrayIndexOf function', () => {
     });
 });
 
-// describe('Given arrayReduce function', () => {
-//     test(`The result should be ${cases.reduce(
-//         (previousValue, currentValue) => previousValue + currentValue,
-//         0
-//     )}`, () => {
-//         const expected = cases.reduce(
-//             (previousValue, currentValue) => previousValue + currentValue,
-//             0
-//         );
-//         const result = arrayReduce(cases);
-//         expect(result).toBe(expected);
-//     });
-// });
-// describe('Given arrayJoin function', () => {
-//     test.each(joinCases)(`The string should be %p}`, (value) => {
-//         const expected = cases.join(value);
-//         const result = arrayJoin(cases, value);
-//         expect(result).toBe(expected);
-//     });
-// });
+describe('Given arrayReduce function', () => {
+    const cases = [1, 2, 3, 4];
+    const initialValue = 0;
+    const reduceCallback = (previousValue, currentValue) =>
+        previousValue + currentValue;
+    test(`The result should be ${cases.reduce(reduceCallback)}`, () => {
+        const expected = cases.reduce(reduceCallback);
+        const result = arrayReduce(cases, reduceCallback, initialValue);
+        expect(result).toBe(expected);
+    });
+});
+
+describe('Given arrayJoin function', () => {
+    const cases = [6, 'Hello', false, 'Present', NaN, 17, undefined, null, 38];
+    const specialCase = '';
+    test.each(joinCases)(`The string should be %p`, (value) => {
+        const expected = cases.join(value);
+        const result = arrayJoin(cases, value);
+        expect(result).toBe(expected);
+    });
+    test(`The string should be "6,Hello,false,Present,NaN,17,,,38"`, () => {
+        const expected = '6,Hello,false,Present,NaN,17,,,38';
+        const result = arrayJoin(cases, specialCase);
+        expect(result).toBe(expected);
+    });
+});
