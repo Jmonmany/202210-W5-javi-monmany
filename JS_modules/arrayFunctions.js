@@ -124,29 +124,3 @@ export function arrayJoin(nativeArray, value) {
         result += nativeArray[i] + value;
     }
 }
-
-export function functionArray(
-    nativeArray,
-    extraElement,
-    callback,
-    includedElement,
-    initialValue,
-    joinCase,
-    ...elements
-) {
-    console.log(arrayLength(nativeArray));
-    console.log(arrayPush(nativeArray, extraElement));
-    console.log(arrayPop(nativeArray));
-    console.log(arrayUnshift(nativeArray, ...elements));
-    console.log(arrayShift(nativeArray));
-    console.log(arraySome(nativeArray, callback));
-    console.log(arrayEvery(nativeArray, callback));
-    console.log(arrayFind(nativeArray, callback));
-    console.log(arrayFilter(nativeArray, callback));
-    console.log(arrayMap(nativeArray, callback));
-    console.log(arrayFindIndex(nativeArray, callback));
-    console.log(arrayIncludes(nativeArray, includedElement));
-    console.log(arrayIndexOf(nativeArray, includedElement, initialValue));
-    console.log(arrayReduce(nativeArray, callback, initialValue));
-    console.log(arrayJoin(nativeArray, joinCase));
-}
