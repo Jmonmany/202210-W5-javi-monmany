@@ -7,27 +7,36 @@ export function arrayLength(nativeArray) {
     }
     return length;
 }
-
 export function arrayPush(nativeArray, extraElement) {
     nativeArray[arrayLength(nativeArray)] = extraElement;
     return arrayLength(nativeArray);
 }
-
 export function arrayPop(nativeArray) {
-    const lastElement = nativeArray[arrayLength(nativeArray) - 1];
-
-    for (let i = 0; i <= arrayLength(nativeArray) - 1; i++) {
-        if (i === arrayLength(nativeArray) - 1) {
-            delete nativeArray[i];
-        }
-    }
+    const length = arrayLength(nativeArray) ? arrayLength(nativeArray) - 1 : 0;
+    const lastElement = arrayLength(nativeArray)
+        ? nativeArray[length]
+        : undefined;
+    Object.defineProperty(nativeArray, 'length', { value: length });
     return lastElement;
+
+    // Old way
+    // const lastElement = nativeArray[arrayLength(nativeArray) - 1];
+    // nativeArray.arrayLength = nativeArray.arrayLength - 1;
+    // for (let i = 0; i <= arrayLength(nativeArray) - 1; i++) {
+    //      if (i === arrayLength(nativeArray) - 1) {
+    //          delete nativeArray[i];
+    //      }
+    //  }
+
+    // return lastElement;
 }
-export function arrayUnshift(nativeArray, newElement) {
+export function arrayUnshift(nativeArray, ...elements) {
     for (let i = arrayLength(nativeArray) - 1; i >= 0; i--) {
-        nativeArray[i + 1] = nativeArray[i];
+        nativeArray[i + arrayLength(elements)] = nativeArray[i];
     }
-    nativeArray[0] = newElement;
+    for (let i = 0; i < arrayLength(elements); i++) {
+        nativeArray[i] = elements[i];
+    }
     return arrayLength(nativeArray);
 }
 export function arrayShift(nativeArray) {
@@ -92,4 +101,52 @@ export function arrayIndexOf(nativeArray, element, initialIndex) {
         if (nativeArray[i] === element) return i;
     }
     return -1;
+}
+export function arrayReduce(nativeArray, callback, initialValue) {
+    let result = initialValue;
+
+    for (let i = 0; i < arrayLength(nativeArray); i++) {
+        result = callback(result, nativeArray[i]);
+    }
+    return result;
+}
+export function arrayJoin(nativeArray, value) {
+    let result = '';
+    value = value === '' ? ',' : value;
+    for (let i = 0; i < arrayLength(nativeArray); i++) {
+        if (nativeArray[i] === undefined || nativeArray[i] === null) {
+            nativeArray[i] = '';
+        }
+        if (i === arrayLength(nativeArray) - 1) {
+            result += nativeArray[i];
+            return result;
+        }
+        result += nativeArray[i] + value;
+    }
+}
+
+export function functionArray(
+    nativeArray,
+    extraElement,
+    callback,
+    includedElement,
+    initialValue,
+    joinCase,
+    ...elements
+) {
+    console.log(arrayLength(nativeArray));
+    console.log(arrayPush(nativeArray, extraElement));
+    console.log(arrayPop(nativeArray));
+    console.log(arrayUnshift(nativeArray, ...elements));
+    console.log(arrayShift(nativeArray));
+    console.log(arraySome(nativeArray, callback));
+    console.log(arrayEvery(nativeArray, callback));
+    console.log(arrayFind(nativeArray, callback));
+    console.log(arrayFilter(nativeArray, callback));
+    console.log(arrayMap(nativeArray, callback));
+    console.log(arrayFindIndex(nativeArray, callback));
+    console.log(arrayIncludes(nativeArray, includedElement));
+    console.log(arrayIndexOf(nativeArray, includedElement, initialValue));
+    console.log(arrayReduce(nativeArray, callback, initialValue));
+    console.log(arrayJoin(nativeArray, joinCase));
 }
